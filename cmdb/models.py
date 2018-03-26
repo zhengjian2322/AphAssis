@@ -1,6 +1,7 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+import mongoengine
+from mongoengine import Document, StringField
 
-from django.db import models
 
-# Create your models here.
+class imageModel(mongoengine.Document):
+    image_key = mongoengine.StringField(required=True)
+    image_value = mongoengine.StringField()
