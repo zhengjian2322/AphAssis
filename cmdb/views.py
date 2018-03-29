@@ -19,3 +19,6 @@ def index(request):
         print (a)
 
     return render(request,"index.html",)
+
+def showImg(request):
+	return render(request,"showImg/showImg.html")
