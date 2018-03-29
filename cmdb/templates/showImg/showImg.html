@@ -1,0 +1,31 @@
+<!-- showImg.html -->
+<html>
+<head></head>
+<body>
+	<p><img id="img1" src="/static/apple.jpg" width="30%" height="30%" style="position:absolute;left:10%;top:10%"></p>
+	<p><img id="img2" src="/static/apple.jpg" width="30%" height="30%" style="position:absolute;left:50%;top:10%"></p>
+	<p><img id="img3" src="/static/apple.jpg" width="30%" height="30%" style="position:absolute;left:10%;top:50%"></p>
+	<p><img id="img4" src="/static/apple.jpg" width="30%" height="30%" style="position:absolute;left:50%;top:50%"></p>
+	
+	<script>
+		var answer;
+		var GotAnswer = 0;
+		var oImg1 = document.getElementById('img1');
+		oImg1.onclick = function(){
+			GotAnswer = 1;
+		}
+		var oImg2 = document.getElementById('img2');
+		oImg2.onclick = function(){
+			GotAnswer = 2;
+		}
+		var oImg3 = document.getElementById('img3');
+		oImg3.onclick = function(){
+			GotAnswer = 3;
+		}
+		var oImg4 = document.getElementById('img4');
+		oImg4.onclick = function(){
+			GotAnswer = 4;
+		}
+	</script>
+</body>
+</html>
