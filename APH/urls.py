@@ -20,6 +20,6 @@ admin.autodiscover()
 urlpatterns = [
     #url(r'^admin/', admin.site.urls),
 
-    url(r'^index/',views.index),
 	url(r'^show/',views.showImg),
+    url(r'^upload_file/',views.upload_file),
 ]
