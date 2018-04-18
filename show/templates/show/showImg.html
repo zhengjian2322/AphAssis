@@ -1,0 +1,72 @@
+<!-- showImg.html -->
+<html>
+
+<body>
+	<p><audio id="play" src="{{ question.voice }}" controls='controls'></audio></p>
+	<p><audio id="play1" src=""></audio></p>
+	<p><img id="img1" src="{{ question.imageA.url }}" width="35%" height="35%" style="position:absolute;left:10%;top:15%"></p>
+	<p><img id="img2" src="{{ question.imageB.url }}" width="35%" height="35%" style="position:absolute;left:50%;top:15%"></p>
+	<p><img id="img3" src="{{ question.imageC.url }}" width="35%" height="35%" style="position:absolute;left:10%;top:60%"></p>
+	<p><img id="img4" src="{{ question.imageD.url }}" width="35%" height="35%" style="position:absolute;left:50%;top:60%"></p>
+	
+	<script>
+		var test = true;
+		var Answer = "{{ question.question }}";
+		var audio = document.getElementById('play1');
+		var oImg1 = document.getElementById('img1');
+		oImg1.onclick = function(){
+			
+			var strA = "{{ question.DesA }}";
+			var checkA = (strA == Answer);
+			if(checkA){
+				alert("你很厉害，知道这个是苹果！");
+			}else{
+				var dirA = "../media/guide/";
+				dirA = dirA + Answer + strB + "/1.mp3";
+				audio.src = dirB;
+				audio.play();		
+			}
+		}
+		var oImg2 = document.getElementById('img2');
+		oImg2.onclick = function(){
+			var strB = "{{ question.DesB }}";
+			var checkB = (strB == Answer);
+			if(checkB){
+				alert("你很厉害，知道这个是桔子！");
+			}
+			else{
+				var dirB = "../media/guide/";
+				dirB = dirB + Answer + strB + "/1.mp3";
+				audio.src = dirB;
+				audio.play();
+			}
+		}
+		var oImg3 = document.getElementById('img3');
+		oImg3.onclick = function(){
+			var strC = "{{ question.DesC }}";
+			var checkC = (strC == Answer);
+			if(checkC){
+				alert("你很厉害，知道这个是梨！");
+			}else{
+				var dirC = "../media/guide/";
+				dirC = dirC + Answer + strC + "/1.mp3";
+				audio.src = dirC;
+				audio.play();
+			}
+		}
+		var oImg4 = document.getElementById('img4');
+		oImg4.onclick = function(){
+			var strD = "{{ question.DesD }}";
+			var checkD = (strD == Answer);
+			if(checkD){
+				alert("你很厉害，知道这个是菠萝！");
+			}else{
+				var dirD = "../media/guide/";
+				dirD = dirD + Answer + strD + "/1.mp3";
+				audio.src = dirD;
+				audio.play();
+			}
+		}
+	</script>
+</body>
+</html>
