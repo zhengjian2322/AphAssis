@@ -1,0 +1,62 @@
+<!-- showImg.html -->
+<html style="font-size: 16.272px;" lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<link href="index.css" rel="stylesheet" type="text/html" />
+</head>
+
+<body style="overflow: auto;">
+<div style="height:3.4375rem; background-color:#2EA3FD; vertical-align:middle;z-index:20">
+	<div class="container">	
+		<h1 class="brand">
+			<a alt="失语症辅助网站"> 失语症辅助恢复 </a>
+		</h1>
+	</div>
+</div>
+
+<div>
+	<fieldset>	
+		<table width="400" height="412">
+		<tr height="190px">
+			<td width="600px"></td>
+			<td> </td>
+		</tr>
+		<tr>	
+			<td></td>
+			<td><table>
+				<tr>
+					<td><nobr>用户名:</nobr></td>
+					<td><input type="text" name="username" value="用户名" size="20" maxlength="20" onfocus="if (this.value=='用户名') this.value='';"/> </td>
+					<td> </td>
+					<td> </td>
+				</tr>
+
+				<tr>
+					<td><nobr>密码：</nobr></td>
+					<td><input type="text" name="password" value="密码" size="20" maxlength="20" onfocus="if (this.value=='密码') this.value='';"/>
+					</td>
+				</tr>
+			</table> </td>
+	
+			<tr>
+				<td> </td>
+				<td> <table>
+					<tr>
+						<td><input type="submit" name="login" value="登录" /></td>
+						<td><input type="button" name="logup" value="注册" /> </td>
+					</tr>
+				</table> </td>
+			</tr>
+		</tr>	
+	</fieldset>
+</div>
+
+<script language="javascript">
+	function validateLogin(){
+		var userName = document.frmLogin.username.value;
+		var userPassword = document.frmLogin.password.value;
+	}
+</script>
+</body>
+</html>

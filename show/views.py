@@ -10,3 +10,6 @@ def show(request):
 	questions = list(all_ques)
 	question = questions[0]
 	return render(request,'show/showImg.html',{"question":question})
+
+def index(request):
+	return render(request,'show/index.html')

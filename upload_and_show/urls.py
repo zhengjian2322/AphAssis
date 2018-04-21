@@ -23,6 +23,7 @@ from django.conf import settings
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 	url(r'show/',show_views.show),
+	url(r'index/',show_views.index),
 	url(r'^upload/',upload_views.upload),
 	url(r'^guide_upload/',upload_views.guide_upload),
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
