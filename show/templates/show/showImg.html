@@ -4,19 +4,55 @@
 <body>
 	<p><audio id="play" src="" controls='controls'></audio></p>
 	<p><audio id="play1" src=""></audio></p>
-	<p><img id="img1" width="35%" height="35%" style="position:absolute;left:10%;top:15%"></p>
-	<p><img id="img2" width="35%" height="35%" style="position:absolute;left:50%;top:15%"></p>
-	<p><img id="img3" width="35%" height="35%" style="position:absolute;left:10%;top:60%"></p>
-	<p><img id="img4" width="35%" height="35%" style="position:absolute;left:50%;top:60%"></p>
+	<p><img id="img1" src="" width="35%" height="35%" style="position:absolute;left:10%;top:15%"></p>
+	<p><img id="img2" src="" width="35%" height="35%" style="position:absolute;left:50%;top:15%"></p>
+	<p><img id="img3" src="" width="35%" height="35%" style="position:absolute;left:10%;top:60%"></p>
+	<p><img id="img4" src="" width="35%" height="35%" style="position:absolute;left:50%;top:60%"></p>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+
 	<script>
+		var pathA,pathB,pathC,pathD,pathVoice;
+		var desA,desB,desC,desD,Answer;
+		var audio = document.getElementById('play1');
+		var audio1 = document.getElementById('play');
+		var oImg1 = document.getElementById('img1');
+		var oImg2 = document.getElementById('img2');
+		var oImg3 = document.getElementById('img3');
+		var oImg4 = document.getElementById('img4');
 		function get_next() {
 			$.ajax({
 				type: "POST",
-				url: "{% url 'get_next' %}",
+				url: "http://127.0.0.1:8000/get_next/",
 				data: {},
-				success: function(data) {
-					alert("{{ Question.question }}");
+				success: function(data) {			
+					Answer = data.namee;
+					if(Answer == ""){
+						alert("题目已经做完了");
+					}
+					pathA = data.imageA;
+					desA = data.DesA;	
+					pathA = "/media/" + pathA;
+					oImg1.src = pathA;		
+
+					pathB = data.imageB;
+					desB = data.DesB;	
+					pathB = "/media/" + pathB;
+					oImg2.src = pathB;
+
+					pathC = data.imageC;
+					desC = data.DesC;	
+					pathC = "/media/" + pathC;
+					oImg3.src = pathC;
+	
+					pathD = data.imageD;	
+					desD = data.DesD;
+					pathD = "/media/" + pathD;
+					oImg4.src = pathD;		
+					
+					pathVoice = data.voice;
+					
+					pathVoice = "/" + pathVoice;
+					audio1.src = pathVoice;
 				},
 				error: function(data) {
 					alert("Some error!");
@@ -24,30 +60,12 @@
 			});
 		}		
 		get_next();
-		//var index = 0;
 		
-		/*
-		var Answer = "{{ Questions.index.question }}";
-		function next(){
-			
-			if(index < len){
-				index = index + 1;
-				window.location.reload();
-			}
-			else{
-				alert("题已经做完了！");
-			}
-		}
-		var audio = document.getElementById('play1');
-		audio.src = "{{ questions.index.voice }}";
-		var oImg1 = document.getElementById('img1');
-		oImg1.src = "{{ questions.index.imageA.url }}";
 
 		oImg1.onclick = function(){			
-			var strA = "{{ questions.index.DesA }}";
-			var checkA = (strA == Answer);
+			var checkA = (desA == Answer);
 			if(checkA){
-				next();				
+				get_next();				
 			}else{
 				var dirA = "../media/guide/";
 				dirA = dirA + Answer + strB + "/1.mp3";
@@ -55,13 +73,11 @@
 				audio.play();		
 			}
 		}
-		var oImg2 = document.getElementById('img2');
-		oImg2.src = "{{ questions.index.imageB.url }}";
+		
 		oImg2.onclick = function(){
-			var strB = "{{ questions.index.DesB }}";
-			var checkB = (strB == Answer);
+			var checkB = (desB == Answer);
 			if(checkB){
-				next();
+				get_next();
 			}
 			else{
 				var dirB = "../media/guide/";
@@ -70,13 +86,11 @@
 				audio.play();
 			}
 		}
-		var oImg3 = document.getElementById('img3');
-		oImg3.src = "{{ questions.index.imageC.url }}";
+		
 		oImg3.onclick = function(){
-			var strC = "{{ questions.index.DesC }}";
-			var checkC = (strC == Answer);
+			var checkC = (desC == Answer);
 			if(checkC){
-				next();
+				get_next();
 			}else{
 				var dirC = "../media/guide/";
 				dirC = dirC + Answer + strC + "/1.mp3";
@@ -84,20 +98,18 @@
 				audio.play();
 			}
 		}
-		var oImg4 = document.getElementById('img4');
-		oImg4.src = "{{ questions.index.imageD.url }}";
+		
 		oImg4.onclick = function(){
-			var strD = "{{ questions.index.DesD }}";
-			var checkD = (strD == Answer);
+			var checkD = (desD == Answer);
 			if(checkD){
-				next();
+				get_next();
 			}else{
 				var dirD = "../media/guide/";
 				dirD = dirD + Answer + strD + "/1.mp3";
 				audio.src = dirD;
 				audio.play();
 			}
-		}*/
+		}
 	</script>
 </body>
 </html>

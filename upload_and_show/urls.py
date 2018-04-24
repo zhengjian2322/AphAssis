@@ -19,11 +19,16 @@ from upload import views as upload_views
 from show import views as show_views
 from django.conf.urls.static import static
 from django.conf import settings
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.contrib import staticfiles 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+	url(r'^index/',show_views.index),
 	url(r'show/',show_views.show),
-	url(r'index/',show_views.index),
 	url(r'^upload/',upload_views.upload),
 	url(r'^guide_upload/',upload_views.guide_upload),
+	url(r'^get_next/',show_views.get_next, name="get_next"),
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+
+urlpatterns += staticfiles_urlpatterns()
