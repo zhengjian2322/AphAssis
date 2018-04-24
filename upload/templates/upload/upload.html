@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
 
-<head> upload file </head>
 
-<body>
-<h1> 上传题目 </h1>
+<body style="background-color:#F0F8FF">
+<h2 style="position:absolute;left:5%"> 上传题目 </h2>
+<h3 style="position:absolute;left:3%;top:7%"> 请在本页面将题目上传 </h3>
 <form action='/upload/' method='post' enctype='multipart/form-data'>
 	{% csrf_token %}
-	<p> ImageA<input type="file" name="imageA"> </p>
-	<p> Description A<input type="text" name="desA"></p>
-	<p> ImageB<input type="file" name="imageB"> </p>
-	<p> Description B<input type="text" name="desB"></p>
-	<p> ImageC<input type="file" name="imageC"> </p>
-	<p> Description C<input type="text" name="desC"></p>
-	<p> ImageD<input type="file" name="imageD"> </p>
-	<p> Description D<input type="text" name="desD"></p>
-	<p> Question <input type="text" name="question"> </p>
-	<p><input type="submit" value="submit"></p>
+	<p style="position:absolute;left:10%;top:15%"> 图片A <input type="file" name="imageA"> </p>
+	<p style="position:absolute;left:8%;top:25%"> 图片A的描述 <input type="text" name="desA"></p>
+	<p style="position:absolute;left:50%;top:15%"> 图片B <input type="file" name="imageB" > </p>
+	<p style="position:absolute;left:48%;top:25%"> 图片B的描述 <input type="text" name="desB"></p>
+	<p style="position:absolute;left:10%;top:55%"> 图片C <input type="file" name="imageC"> </p>
+	<p style="position:absolute;left:10%;top:65%"> 图片C的描述 <input type="text" name="desC"></p>
+	<p style="position:absolute;left:50%;top:55%"> 图片D <input type="file" name="imageD"> </p>
+	<p style="position:absolute;left:50%;top:65%"> 图片D的描述 <input type="text" name="desD"></p>
+	<p style="position:absolute;left:32%;top:75%"> 问题 <input type="text" name="question"> </p>
+	<p style="position:absolute;left:40%;top:85%"><input type="submit" value="提交"></p>
 </form>
 
 </body>

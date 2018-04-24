@@ -2,24 +2,52 @@
 <html>
 
 <body>
-	<p><audio id="play" src="{{ question.voice }}" controls='controls'></audio></p>
+	<p><audio id="play" src="" controls='controls'></audio></p>
 	<p><audio id="play1" src=""></audio></p>
-	<p><img id="img1" src="{{ question.imageA.url }}" width="35%" height="35%" style="position:absolute;left:10%;top:15%"></p>
-	<p><img id="img2" src="{{ question.imageB.url }}" width="35%" height="35%" style="position:absolute;left:50%;top:15%"></p>
-	<p><img id="img3" src="{{ question.imageC.url }}" width="35%" height="35%" style="position:absolute;left:10%;top:60%"></p>
-	<p><img id="img4" src="{{ question.imageD.url }}" width="35%" height="35%" style="position:absolute;left:50%;top:60%"></p>
-	
+	<p><img id="img1" width="35%" height="35%" style="position:absolute;left:10%;top:15%"></p>
+	<p><img id="img2" width="35%" height="35%" style="position:absolute;left:50%;top:15%"></p>
+	<p><img id="img3" width="35%" height="35%" style="position:absolute;left:10%;top:60%"></p>
+	<p><img id="img4" width="35%" height="35%" style="position:absolute;left:50%;top:60%"></p>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 	<script>
-		var test = true;
-		var Answer = "{{ question.question }}";
-		var audio = document.getElementById('play1');
-		var oImg1 = document.getElementById('img1');
-		oImg1.onclick = function(){
+		function get_next() {
+			$.ajax({
+				type: "POST",
+				url: "{% url 'get_next' %}",
+				data: {},
+				success: function(data) {
+					alert("{{ Question.question }}");
+				},
+				error: function(data) {
+					alert("Some error!");
+				}		
+			});
+		}		
+		get_next();
+		//var index = 0;
+		
+		/*
+		var Answer = "{{ Questions.index.question }}";
+		function next(){
 			
-			var strA = "{{ question.DesA }}";
+			if(index < len){
+				index = index + 1;
+				window.location.reload();
+			}
+			else{
+				alert("题已经做完了！");
+			}
+		}
+		var audio = document.getElementById('play1');
+		audio.src = "{{ questions.index.voice }}";
+		var oImg1 = document.getElementById('img1');
+		oImg1.src = "{{ questions.index.imageA.url }}";
+
+		oImg1.onclick = function(){			
+			var strA = "{{ questions.index.DesA }}";
 			var checkA = (strA == Answer);
 			if(checkA){
-				alert("你很厉害，知道这个是苹果！");
+				next();				
 			}else{
 				var dirA = "../media/guide/";
 				dirA = dirA + Answer + strB + "/1.mp3";
@@ -28,11 +56,12 @@
 			}
 		}
 		var oImg2 = document.getElementById('img2');
+		oImg2.src = "{{ questions.index.imageB.url }}";
 		oImg2.onclick = function(){
-			var strB = "{{ question.DesB }}";
+			var strB = "{{ questions.index.DesB }}";
 			var checkB = (strB == Answer);
 			if(checkB){
-				alert("你很厉害，知道这个是桔子！");
+				next();
 			}
 			else{
 				var dirB = "../media/guide/";
@@ -42,11 +71,12 @@
 			}
 		}
 		var oImg3 = document.getElementById('img3');
+		oImg3.src = "{{ questions.index.imageC.url }}";
 		oImg3.onclick = function(){
-			var strC = "{{ question.DesC }}";
+			var strC = "{{ questions.index.DesC }}";
 			var checkC = (strC == Answer);
 			if(checkC){
-				alert("你很厉害，知道这个是梨！");
+				next();
 			}else{
 				var dirC = "../media/guide/";
 				dirC = dirC + Answer + strC + "/1.mp3";
@@ -55,18 +85,19 @@
 			}
 		}
 		var oImg4 = document.getElementById('img4');
+		oImg4.src = "{{ questions.index.imageD.url }}";
 		oImg4.onclick = function(){
-			var strD = "{{ question.DesD }}";
+			var strD = "{{ questions.index.DesD }}";
 			var checkD = (strD == Answer);
 			if(checkD){
-				alert("你很厉害，知道这个是菠萝！");
+				next();
 			}else{
 				var dirD = "../media/guide/";
 				dirD = dirD + Answer + strD + "/1.mp3";
 				audio.src = dirD;
 				audio.play();
 			}
-		}
+		}*/
 	</script>
 </body>
 </html>
