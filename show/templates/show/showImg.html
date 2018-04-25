@@ -12,7 +12,7 @@
 
 	<script>
 		var pathA,pathB,pathC,pathD,pathVoice;
-		var desA,desB,desC,desD,Answer;
+		var desA,desB,desC,desD,Answer,guidePath;
 		var audio = document.getElementById('play1');
 		var audio1 = document.getElementById('play');
 		var oImg1 = document.getElementById('img1');
@@ -61,16 +61,38 @@
 		}		
 		get_next();
 		
+		function error_answer(des){
+			$.ajax({
+					type: "POST",
+					url: "http://127.0.0.1:8000/error_answer/",
+					data: {
+						"right":Answer,
+						"wrong":des
+					},
+					success: function(data) {
+						if(data.guide == "")
+						{
+							alert("还没有这种情况的引导语");
+						}
+						else{
+							guidePath = "/" + data.guide;
+							audio.src = guidePath;
+							audio.play();
+						}
+					},
+					error: function(data) {
+						alert("Some error!");
+					}		
+				});
+			}
+		
 
 		oImg1.onclick = function(){			
 			var checkA = (desA == Answer);
 			if(checkA){
 				get_next();				
 			}else{
-				var dirA = "../media/guide/";
-				dirA = dirA + Answer + strB + "/1.mp3";
-				audio.src = dirB;
-				audio.play();		
+				error_answer(desA);
 			}
 		}
 		
@@ -80,10 +102,7 @@
 				get_next();
 			}
 			else{
-				var dirB = "../media/guide/";
-				dirB = dirB + Answer + strB + "/1.mp3";
-				audio.src = dirB;
-				audio.play();
+				error_answer(desB);
 			}
 		}
 		
@@ -92,10 +111,7 @@
 			if(checkC){
 				get_next();
 			}else{
-				var dirC = "../media/guide/";
-				dirC = dirC + Answer + strC + "/1.mp3";
-				audio.src = dirC;
-				audio.play();
+				error_answer(desC);
 			}
 		}
 		
@@ -104,10 +120,7 @@
 			if(checkD){
 				get_next();
 			}else{
-				var dirD = "../media/guide/";
-				dirD = dirD + Answer + strD + "/1.mp3";
-				audio.src = dirD;
-				audio.play();
+				error_answer(desD);
 			}
 		}
 	</script>

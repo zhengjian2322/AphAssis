@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from urllib import request 
-from urllib import response
+#from urllib import request 
+#from urllib import response
 import json
+import random
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
-from upload.models import Ques
+from upload.models import Ques, guide
 from django.http import HttpResponse, JsonResponse
 # Create your views here.
 
@@ -56,5 +57,20 @@ def get_next(request):
 						 "voice":voice
 							})
 
+
+@csrf_exempt
+def error_answer(request):
+	right = request.POST.get('right',None)
+	wrong = request.POST.get('wrong',None)	
+	Guider = list(guide.objects.filter(right_answer=right,wrong_answer=wrong))
+	
+	if len(Guider) > 0:
+		tip = random.sample(Guider,1)
+		result = tip[0].tips
+		return JsonResponse({"guide":result})
+	else:
+		tip = ""
+		return JsonResponse({"guide":tip})
+	
 
 
