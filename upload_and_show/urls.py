@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from makeSet import views as Set_views
 from upload import views as upload_views
 from show import views as show_views
 from django.conf.urls.static import static
@@ -30,6 +31,7 @@ urlpatterns = [
 	url(r'^guide_upload/',upload_views.guide_upload),
 	url(r'^get_next/',show_views.get_next, name="get_next"),
 	url(r'^error_answer/',show_views.error_answer,name="error_answer"),
+	url(r'^makeSet/',Set_views.makeSet),
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()

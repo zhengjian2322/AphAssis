@@ -1,0 +1,75 @@
+<!-- makeSet.html -->
+<html>
+
+<body>
+	
+	<form action="">
+		<fieldset style="position:absolute;left:12%;top:15%;width:15%;height:75%" >
+			<legend>所有题目</legend>
+			<table border="1" width="100%">
+				<tr>
+					<td width="80%"> 题目：苹果<br />A:苹果  B:桔子<br />C:香蕉  D:猕猴桃</td>
+					<td width="20%"> 
+						<input id="v1" type="checkbox" onclick="change(this)">
+					</td>
+				</tr>
+				<tr>
+					<td width="80%"> 题目：苹果<br />A:苹果  B:桔子<br />C:香蕉  D:猕猴桃</td>
+					<td width="20%"> 
+						<input id="v1" type="checkbox" onclick="change(this)">
+					</td>
+				</tr>
+				<tr>
+					<td width="80%"> 题目：苹果<br />A:苹果  B:桔子<br />C:香蕉  D:猕猴桃</td>
+					<td width="20%"> 
+						<input id="v1" type="checkbox" onclick="change(this)">
+					</td>
+				</tr>
+				<tr>
+					<td width="80%"> 题目：苹果<br />A:苹果  B:桔子<br />C:香蕉  D:猕猴桃</td>
+					<td width="20%"> 
+						<input id="v1" type="checkbox" onclick="change(this)">
+					</td>
+				</tr>
+				<tr>
+					<td width="80%"> 题目：苹果<br />A:苹果  B:桔子<br />C:香蕉  D:猕猴桃</td>
+					<td width="20%"> 
+						<input id="v1" type="checkbox" onclick="change(this)">
+					</td>
+				</tr>				
+			</table>
+			<br />
+			<button type="button"> 上一页 </button>
+			<label id="pageNumber"> &nbsp 1 &nbsp </label>
+			<button type="button"> 下一页 </button>
+		</fieldset>
+	</form>
+	
+<script type="text/javascript">
+		var pageNum = 2;
+		function change(vi)
+		{
+			if(vi.checked)
+			{	
+				alert("Bike");
+			}
+			else
+			{
+				alert("Car");
+			}
+		}
+		function changePage()
+		{
+			var label = document.getElementById('pageNumber');
+			label.innerText = String(pageNum);
+		}
+		changePage();
+	//<!-- 可以用checked 这个属性来判断是不是选中了这题 -->
+	//可以用getElementById来获得那个变量，但是一定要放在代码一定会执行到的地方中
+	//input 有一个type域，如果是 "hidden",就是不显示
+
+	</script>
+
+</body>
+
+</html>
