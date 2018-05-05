@@ -1,8 +1,8 @@
-from django.shortcuts import render
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 import json
 import random
+from copy import deepcopy
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from upload.models import Ques, guide
@@ -16,24 +16,22 @@ def makeSet(request):
 def get_all(request):
 	questions = list(Ques.objects.all())
 	length = len(questions)
-	question = questions[number]
+	#toList = []
+	#toList.append(length)
 	ans = {}
-	ans.update("length": length)	
+	ans["length"] = length
 	for i in range(length):
-		ques = str(question.question)
-		imageA = str(question.imageA)
-		DesA = str(question.DesA)
-		imageB = str(question.imageB)
-		DesB = str(question.DesB)
-		imageC = str(question.imageC)
-		DesC = str(question.DesC)
-		imageD = str(question.imageD)
-		DesD = str(question.DesD)
-		voice = str(question.voice)
-		ans.update(str(i): {"namee":ques, "imageA":imageA, "DesA":DesA,
-						 "imageB":imageB, "DesB":DesB, "imageC":imageC,
-						 "DesC":DesC, "imageD":imageD, "DesD":DesD,
-						 "voice":voice})	
+		ans["ques" + str(i)] = str(questions[i].question)
+		ans["imageA" + str(i)] = str(questions[i].imageA)
+		ans["DesA" + str(i)] = str(questions[i].DesA)
+		ans["imageB" + str(i)] = str(questions[i].imageB)
+		ans["DesB" + str(i)] = str(questions[i].DesB)
+		ans["imageC" + str(i)] = str(questions[i].imageC)
+		ans["DesC" + str(i)] = str(questions[i].DesC)
+		ans["imageD" + str(i)] = str(questions[i].imageD)
+		ans["DesD" + str(i)] = str(questions[i].DesD)
+		ans["voice" + str(i)] = str(questions[i].voice)
+		#toList.append(deepcopy(ans))	
 		
 	return JsonResponse(ans)
 

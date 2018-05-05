@@ -8,45 +8,76 @@
 			<legend>所有题目</legend>
 			<table border="1" width="100%">
 				<tr>
-					<td width="80%"> 题目：苹果<br />A:苹果  B:桔子<br />C:香蕉  D:猕猴桃</td>
+					<td id="td1" width="80%"> Loading.. </td>
 					<td width="20%"> 
 						<input id="v1" type="checkbox" onclick="change(this)">
 					</td>
 				</tr>
 				<tr>
-					<td width="80%"> 题目：苹果<br />A:苹果  B:桔子<br />C:香蕉  D:猕猴桃</td>
+					<td id="td2" width="80%"> Loading.. </td>
 					<td width="20%"> 
-						<input id="v1" type="checkbox" onclick="change(this)">
+						<input id="v2" type="checkbox" onclick="change(this)">
 					</td>
 				</tr>
 				<tr>
-					<td width="80%"> 题目：苹果<br />A:苹果  B:桔子<br />C:香蕉  D:猕猴桃</td>
+					<td id="td3" width="80%"> Loading.. </td>
 					<td width="20%"> 
-						<input id="v1" type="checkbox" onclick="change(this)">
+						<input id="v3" type="checkbox" onclick="change(this)">
 					</td>
 				</tr>
 				<tr>
-					<td width="80%"> 题目：苹果<br />A:苹果  B:桔子<br />C:香蕉  D:猕猴桃</td>
+					<td id="td4" width="80%"> Loading.. </td>
 					<td width="20%"> 
-						<input id="v1" type="checkbox" onclick="change(this)">
+						<input id="v4" type="checkbox" onclick="change(this)">
 					</td>
 				</tr>
 				<tr>
-					<td width="80%"> 题目：苹果<br />A:苹果  B:桔子<br />C:香蕉  D:猕猴桃</td>
+					<td id="td5" width="80%"> Loading.. </td>
 					<td width="20%"> 
-						<input id="v1" type="checkbox" onclick="change(this)">
+						<input id="v5" type="checkbox" onclick="change(this)">
 					</td>
 				</tr>				
 			</table>
 			<br />
-			<button type="button"> 上一页 </button>
+			<button type="button" onclick="subPage()"> 上一页 </button>
 			<label id="pageNumber"> &nbsp 1 &nbsp </label>
-			<button type="button"> 下一页 </button>
+			<button type="button" onclick="addPage()"> 下一页 </button>
 		</fieldset>
 	</form>
-	
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 <script type="text/javascript">
-		var pageNum = 2;
+		var pageNum = 1;
+		var all_ques;
+		var all_length = 0;
+		function subPage()
+		{
+			if(pageNum <= 1)
+			{
+				alert("这是第一页!");
+			}
+			else
+			{
+				pageNum = pageNum - 1;
+				ques_display();
+				changePage();
+			}
+		}
+
+		function addPage()
+		{
+			if(pageNum > all_length / 5)
+			{
+				alert("这是最后一页");
+			}
+			else
+			{
+				pageNum = pageNum + 1;
+				ques_display();
+				changePage();
+			}
+		}
+
 		function change(vi)
 		{
 			if(vi.checked)
@@ -67,6 +98,98 @@
 	//<!-- 可以用checked 这个属性来判断是不是选中了这题 -->
 	//可以用getElementById来获得那个变量，但是一定要放在代码一定会执行到的地方中
 	//input 有一个type域，如果是 "hidden",就是不显示
+	
+	function ques_display()
+	{
+		var ques_2_disp = 5;
+		var reduce = all_length % 5;
+		let final = (pageNum === parseInt(((all_length + 4) / 5)));
+		if(final)
+		{
+			if(reduce == 0)
+			{
+				ques_2_disp = 5;	
+			}
+			else
+			{
+				ques_2_disp = reduce;	
+			}
+			
+		}
+		var startNum = (pageNum - 1) * 5;
+		for(let i = 0;i < 5;i++)
+		{
+			var td = document.getElementById('td'+(i+1));
+			if(final && i >= reduce)
+			{
+				td.innerText = "";
+				var vi = document.getElementById('v'+(i+1));
+				vi.type = "hidden";
+			}
+			else
+			{
+				td.innerText = "题目：" + all_ques["ques"+(startNum+i)]+"\n" + "A:" + all_ques["DesA"+(startNum+i)]
+							+ "B:" + all_ques["DesB" + (startNum+i)] + "\n" + "C:" + all_ques["DesC"+(startNum+i)]
+							+ "D:" + all_ques["DesD" + (startNum+i)];	
+				var vi = document.getElementById('v'+(i+1));
+				vi.type = "checkbox";
+			}
+			
+		}
+		/*
+		var td1 = document.getElementById('td1');
+		var td2 = document.getElementById('td2');
+		var td3 = document.getElementById('td3');
+		var td4 = document.getElementById('td4');
+		var td5 = document.getElementById('td5');
+		var startNum = (pageNum - 1) * 5;
+		var num1 = startNum;
+		var num2 = num1 + 1;
+		var num3 = num2 + 1;
+		var num4 = num3 + 1;
+		var num5 = num4 + 1;
+		td1.innerText = "题目：" + all_ques["ques" + num1] + "\n" + "A:" + all_ques["DesA"+num1] + "  "
+						+ "B:" + all_ques["DesB" + num1] + "\n" + "C:" + all_ques["DesC"+num1] + "  "
+						+ "D:" + all_ques["DesD" + num1];
+
+		td2.innerText = "题目：" + all_ques["ques" + num2] + "\n" + "A:" + all_ques["DesA"+num2] + "  "
+						+ "B:" + all_ques["DesB" + num2] + "\n" + "C:" + all_ques["DesC"+num2] + "  "
+						+ "D:" + all_ques["DesD" + num2];
+
+		td3.innerText = "题目：" + all_ques["ques" + num3] + "\n" + "A:" + all_ques["DesA"+num3] + "  "
+						+ "B:" + all_ques["DesB" + num3] + "\n" + "C:" + all_ques["DesC"+num3] + "  "
+						+ "D:" + all_ques["DesD" + num3];
+
+		td4.innerText = "题目：" + all_ques["ques" + num4] + "\n" + "A:" + all_ques["DesA"+num4] + "  "
+						+ "B:" + all_ques["DesB" + num4] + "\n" + "C:" + all_ques["DesC"+num4] + "  "
+						+ "D:" + all_ques["DesD" + num4];
+
+		td5.innerText = "题目：" + all_ques["ques" + num5] + "\n" + "A:" + all_ques["DesA"+num5] + "  "
+						+ "B:" + all_ques["DesB" + num5] + "\n" + "C:" + all_ques["DesC"+num5] + "  "
+						+ "D:" + all_ques["DesD" + num5];*/
+	}
+
+	function get_all() {
+			$.ajax({
+				type: "POST",
+				url: "http://127.0.0.1:8000/get_all/",
+				data: {},
+				success: function(data) {			
+					//alert(data['ques0']);
+					all_ques = data;
+					all_length = data["length"];
+					ques_display();
+				},
+				error: function(data) {
+					alert("Some error!");
+				}		
+			});
+		}		
+	
+	get_all();
+
+	
+	
 
 	</script>
 

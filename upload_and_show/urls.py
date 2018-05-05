@@ -30,6 +30,7 @@ urlpatterns = [
 	url(r'^upload/',upload_views.upload),
 	url(r'^guide_upload/',upload_views.guide_upload),
 	url(r'^get_next/',show_views.get_next, name="get_next"),
+    url(r'^get_all/',Set_views.get_all, name="get_all"),
 	url(r'^error_answer/',show_views.error_answer,name="error_answer"),
 	url(r'^makeSet/',Set_views.makeSet),
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
