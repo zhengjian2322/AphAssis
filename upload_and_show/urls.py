@@ -19,6 +19,8 @@ from makeSet import views as Set_views
 from upload import views as upload_views
 from show import views as show_views
 from login import views as login_views
+from face_reg_test import views as face_reg_views
+
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -36,6 +38,12 @@ urlpatterns = [
 	url(r'^error_answer/',show_views.error_answer,name="error_answer"),
 	url(r'^makeSet/',Set_views.makeSet),
 	url(r'^register/',login_views.nregister),
+	url(r'^face_reg_test/',face_reg_views.index,name="face_reg_index"),
+	url(r'^upload_snap_test/',face_reg_views.upload_snap,name="upload_snap_test"),
+	url(r'^get_feeling_test/',face_reg_views.get_feeling,name="get_feeling_test"),
+	url(r'^upload_snap/',show_views.upload_snap,name="upload_snap"),
+	url(r'^get_feeling/',show_views.get_feeling,name="get_feeling"),
+	
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()

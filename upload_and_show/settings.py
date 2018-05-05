@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 	'show',
 	'makeSet',
     'login',
+    'face_reg_test',
 ]
 
 MIDDLEWARE = [
