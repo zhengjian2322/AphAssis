@@ -7,6 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from upload.models import Ques, guide
 from django.http import HttpResponse, JsonResponse
+from makeSet.models import QuestionSet
 # Create your views here.
 
 def makeSet(request):
@@ -35,3 +36,27 @@ def get_all(request):
 		
 	return JsonResponse(ans)
 
+@csrf_exempt
+def submit_set(request):
+	l = request.POST.get("quesCheck", None).split(',')
+	ans = []
+	for i in range(len(l)):
+		if l[i] == "true":
+			ans.append(i)
+	ans_string = str(ans[0])
+	for i in range(len(ans)):
+		if i == 0:
+			continue
+		ans_string = ans_string + ","
+		ans_string = ans_string + str(ans[i])
+	t = list(QuestionSet.objects.all())
+	now_id = 0
+	if (len(t) > 0):
+		now_id = t[len(t) - 1].setId + 1
+	new_set = QuestionSet(
+		setId = now_id,
+		questions = ans_string
+		)
+	new_set.save()
+
+	return JsonResponse({"status": 1})

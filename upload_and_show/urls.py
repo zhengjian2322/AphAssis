@@ -32,6 +32,7 @@ urlpatterns = [
 	url(r'^guide_upload/',upload_views.guide_upload),
 	url(r'^get_next/',show_views.get_next, name="get_next"),
     url(r'^get_all/',Set_views.get_all, name="get_all"),
+    url(r'^submit_set/',Set_views.submit_set, name="submit_set"),
 	url(r'^error_answer/',show_views.error_answer,name="error_answer"),
 	url(r'^makeSet/',Set_views.makeSet),
 	url(r'^register/',login_views.nregister),
