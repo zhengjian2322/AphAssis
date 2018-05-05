@@ -6,7 +6,9 @@ from django.shortcuts import render, render_to_response
 from django.template.loader import get_template
 
 from login.models import register
+from django.views.decorators.csrf import csrf_exempt
 
+@csrf_exempt
 def nregister(request):
     if request.method == 'POST':
         type = request.POST.get('type', None)
@@ -14,6 +16,7 @@ def nregister(request):
             res_username = request.POST.get('res_username', None)
             res_password = request.POST.get('res_password', None)
             res_email = request.POST.get('res_email', None)
+            res_id= request.POST.get('res_id', None)
             a = register.objects.filter(Q(res_username=res_username))
             flag = 0
             for e in a:
@@ -25,7 +28,8 @@ def nregister(request):
                 new_register = register(
                     res_username=res_username,
                     res_password=res_password,
-                    res_email=res_email
+                    res_email=res_email,
+                    res_id=res_id
                 )
                 new_register.save()
                 return HttpResponse("success")
