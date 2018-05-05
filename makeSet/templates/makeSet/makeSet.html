@@ -10,31 +10,31 @@
 				<tr>
 					<td id="td1" width="80%"> Loading.. </td>
 					<td width="20%"> 
-						<input id="v1" type="checkbox" onclick="change(this)">
+						<input id="v1" type="checkbox" onclick="store(this,0)">
 					</td>
 				</tr>
 				<tr>
 					<td id="td2" width="80%"> Loading.. </td>
 					<td width="20%"> 
-						<input id="v2" type="checkbox" onclick="change(this)">
+						<input id="v2" type="checkbox" onclick="store(this,1)">
 					</td>
 				</tr>
 				<tr>
 					<td id="td3" width="80%"> Loading.. </td>
 					<td width="20%"> 
-						<input id="v3" type="checkbox" onclick="change(this)">
+						<input id="v3" type="checkbox" onclick="store(this,2)">
 					</td>
 				</tr>
 				<tr>
 					<td id="td4" width="80%"> Loading.. </td>
 					<td width="20%"> 
-						<input id="v4" type="checkbox" onclick="change(this)">
+						<input id="v4" type="checkbox" onclick="store(this,3)">
 					</td>
 				</tr>
 				<tr>
 					<td id="td5" width="80%"> Loading.. </td>
 					<td width="20%"> 
-						<input id="v5" type="checkbox" onclick="change(this)">
+						<input id="v5" type="checkbox" onclick="store(this,4)">
 					</td>
 				</tr>				
 			</table>
@@ -42,6 +42,7 @@
 			<button type="button" onclick="subPage()"> 上一页 </button>
 			<label id="pageNumber"> &nbsp 1 &nbsp </label>
 			<button type="button" onclick="addPage()"> 下一页 </button>
+			<button type="submit" onclick="">
 		</fieldset>
 	</form>
 
@@ -50,6 +51,7 @@
 		var pageNum = 1;
 		var all_ques;
 		var all_length = 0;
+		var quesCheck = new Array();
 		function subPage()
 		{
 			if(pageNum <= 1)
@@ -77,16 +79,16 @@
 				changePage();
 			}
 		}
-
-		function change(vi)
+		
+		function store(vi,id)
 		{
 			if(vi.checked)
 			{	
-				alert("Bike");
+				quesCheck[(pageNum-1)*5 + id] = true;
 			}
 			else
 			{
-				alert("Car");
+				quesCheck[(pageNum-1)*5 + id] = false;
 			}
 		}
 		function changePage()
@@ -131,42 +133,19 @@
 				td.innerText = "题目：" + all_ques["ques"+(startNum+i)]+"\n" + "A:" + all_ques["DesA"+(startNum+i)]
 							+ "B:" + all_ques["DesB" + (startNum+i)] + "\n" + "C:" + all_ques["DesC"+(startNum+i)]
 							+ "D:" + all_ques["DesD" + (startNum+i)];	
-				var vi = document.getElementById('v'+(i+1));
+				var vi = document.getElementById('v'+(i+1));	
 				vi.type = "checkbox";
+				if(quesCheck[startNum+i])
+				{
+					vi.checked = true;
+				}
+				else
+				{
+					vi.checked = false;
+				}
 			}
 			
 		}
-		/*
-		var td1 = document.getElementById('td1');
-		var td2 = document.getElementById('td2');
-		var td3 = document.getElementById('td3');
-		var td4 = document.getElementById('td4');
-		var td5 = document.getElementById('td5');
-		var startNum = (pageNum - 1) * 5;
-		var num1 = startNum;
-		var num2 = num1 + 1;
-		var num3 = num2 + 1;
-		var num4 = num3 + 1;
-		var num5 = num4 + 1;
-		td1.innerText = "题目：" + all_ques["ques" + num1] + "\n" + "A:" + all_ques["DesA"+num1] + "  "
-						+ "B:" + all_ques["DesB" + num1] + "\n" + "C:" + all_ques["DesC"+num1] + "  "
-						+ "D:" + all_ques["DesD" + num1];
-
-		td2.innerText = "题目：" + all_ques["ques" + num2] + "\n" + "A:" + all_ques["DesA"+num2] + "  "
-						+ "B:" + all_ques["DesB" + num2] + "\n" + "C:" + all_ques["DesC"+num2] + "  "
-						+ "D:" + all_ques["DesD" + num2];
-
-		td3.innerText = "题目：" + all_ques["ques" + num3] + "\n" + "A:" + all_ques["DesA"+num3] + "  "
-						+ "B:" + all_ques["DesB" + num3] + "\n" + "C:" + all_ques["DesC"+num3] + "  "
-						+ "D:" + all_ques["DesD" + num3];
-
-		td4.innerText = "题目：" + all_ques["ques" + num4] + "\n" + "A:" + all_ques["DesA"+num4] + "  "
-						+ "B:" + all_ques["DesB" + num4] + "\n" + "C:" + all_ques["DesC"+num4] + "  "
-						+ "D:" + all_ques["DesD" + num4];
-
-		td5.innerText = "题目：" + all_ques["ques" + num5] + "\n" + "A:" + all_ques["DesA"+num5] + "  "
-						+ "B:" + all_ques["DesB" + num5] + "\n" + "C:" + all_ques["DesC"+num5] + "  "
-						+ "D:" + all_ques["DesD" + num5];*/
 	}
 
 	function get_all() {
@@ -179,6 +158,10 @@
 					all_ques = data;
 					all_length = data["length"];
 					ques_display();
+					for(let i = 0;i < all_length;i++)
+					{
+						quesCheck[i] = false;
+					}
 				},
 				error: function(data) {
 					alert("Some error!");
