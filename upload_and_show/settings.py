@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 	'upload',
 	'show',
 	'makeSet',
+    'login',
 ]
 
 MIDDLEWARE = [

@@ -18,6 +18,7 @@ from django.contrib import admin
 from makeSet import views as Set_views
 from upload import views as upload_views
 from show import views as show_views
+from login import views as login_views
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -33,6 +34,7 @@ urlpatterns = [
     url(r'^get_all/',Set_views.get_all, name="get_all"),
 	url(r'^error_answer/',show_views.error_answer,name="error_answer"),
 	url(r'^makeSet/',Set_views.makeSet),
+	url(r'^register/',login_views.nregister),
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()
