@@ -12,6 +12,8 @@
 
 * **login** 是注册和登录功能
 
+* **face** 和 **face_reg_test** 是脸部表情识别功能
+
 * 各种路径设置， **url** 设置在 **upload_and_show** 目录下面
 
 * 需要的各种依赖包在 **package_list.txt** 文件中，感叹号标注的是比较重要的
