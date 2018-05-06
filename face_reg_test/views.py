@@ -25,7 +25,8 @@ def upload_snap(request):
         snap = base64.b64decode(snap_base64)
         # 时间戳命名，保存图片，作为检验
         filename = str(time.time())
-        dest = "/home/ll/dev/workspace/python/AphAssis/external/" + filename + ".png"
+        #dest = "/home/stones/source/git/AphAssis/external/" + filename + ".png"
+        dest = "external/" + filename + ".png"
         if os.path.exists(dest):
             os.remove(dest)
         with open(dest, "wb+") as destination:

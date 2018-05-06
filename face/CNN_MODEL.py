@@ -7,7 +7,8 @@ IMAGE_SIZE = 48
 CLIPED_SIZE = 42
 EMO_NUM = 7
 NUM_CHANNEL = 1
-SAVE_PATH = '/home/ll/dev/workspace/python/AphAssis/face/saved_model'
+#SAVE_PATH = '/home/stones/source/git/AphAssis/face/saved_model'
+SAVE_PATH = 'face/saved_model'
 
 def GetSymmetric(pixel, size):
     '''
