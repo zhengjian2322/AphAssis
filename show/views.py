@@ -15,6 +15,7 @@ import time
 import os
 import base64
 from face.run import get_emotion
+from show.models import Recom_guide
 
 number = int(0)
 questions = list(Ques.objects.all())

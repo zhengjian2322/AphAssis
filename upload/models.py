@@ -28,4 +28,3 @@ class guide(models.Model):
 	def __unicode__(self):
 		return self.right_answer + self.wrong_answer
 
-
