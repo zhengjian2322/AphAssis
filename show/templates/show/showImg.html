@@ -2,125 +2,69 @@
 <html>
 
 <body>
-	<p><audio id="play" src="" controls='controls'></audio></p>
+	<p><audio id="play" src="{{ question.voice }}" controls='controls'></audio></p>
 	<p><audio id="play1" src=""></audio></p>
-	<p><img id="img1" src="" width="35%" height="35%" style="position:absolute;left:10%;top:15%"></p>
-	<p><img id="img2" src="" width="35%" height="35%" style="position:absolute;left:50%;top:15%"></p>
-	<p><img id="img3" src="" width="35%" height="35%" style="position:absolute;left:10%;top:60%"></p>
-	<p><img id="img4" src="" width="35%" height="35%" style="position:absolute;left:50%;top:60%"></p>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+	<p><img id="img1" src="{{ question.imageA.url }}" width="35%" height="35%" style="position:absolute;left:10%;top:15%"></p>
+	<p><img id="img2" src="{{ question.imageB.url }}" width="35%" height="35%" style="position:absolute;left:50%;top:15%"></p>
+	<p><img id="img3" src="{{ question.imageC.url }}" width="35%" height="35%" style="position:absolute;left:10%;top:60%"></p>
+	<p><img id="img4" src="{{ question.imageD.url }}" width="35%" height="35%" style="position:absolute;left:50%;top:60%"></p>
 
 	<script>
-		var pathA,pathB,pathC,pathD,pathVoice;
-		var desA,desB,desC,desD,Answer,guidePath;
+		var test = true;
+		var Answer = "{{ question.question }}";
 		var audio = document.getElementById('play1');
-		var audio1 = document.getElementById('play');
 		var oImg1 = document.getElementById('img1');
-		var oImg2 = document.getElementById('img2');
-		var oImg3 = document.getElementById('img3');
-		var oImg4 = document.getElementById('img4');
-		function get_next() {
-			$.ajax({
-				type: "POST",
-				url: "http://127.0.0.1:8000/get_next/",
-				data: {},
-				success: function(data) {			
-					Answer = data.namee;
-					if(Answer == ""){
-						alert("题目已经做完了");
-					}
-					pathA = data.imageA;
-					desA = data.DesA;	
-					pathA = "/media/" + pathA;
-					oImg1.src = pathA;		
+		oImg1.onclick = function(){
 
-					pathB = data.imageB;
-					desB = data.DesB;	
-					pathB = "/media/" + pathB;
-					oImg2.src = pathB;
-
-					pathC = data.imageC;
-					desC = data.DesC;	
-					pathC = "/media/" + pathC;
-					oImg3.src = pathC;
-	
-					pathD = data.imageD;	
-					desD = data.DesD;
-					pathD = "/media/" + pathD;
-					oImg4.src = pathD;		
-					
-					pathVoice = data.voice;
-					
-					pathVoice = "/" + pathVoice;
-					audio1.src = pathVoice;
-				},
-				error: function(data) {
-					alert("Some error!");
-				}		
-			});
-		}		
-		get_next();
-		
-		function error_answer(des){
-			$.ajax({
-					type: "POST",
-					url: "http://127.0.0.1:8000/error_answer/",
-					data: {
-						"right":Answer,
-						"wrong":des
-					},
-					success: function(data) {
-						if(data.guide == "")
-						{
-							alert("还没有这种情况的引导语");
-						}
-						else{
-							guidePath = "/" + data.guide;
-							audio.src = guidePath;
-							audio.play();
-						}
-					},
-					error: function(data) {
-						alert("Some error!");
-					}		
-				});
-			}
-		
-
-		oImg1.onclick = function(){			
-			var checkA = (desA == Answer);
+			var strA = "{{ question.DesA }}";
+			var checkA = (strA == Answer);
 			if(checkA){
-				get_next();				
+				alert("你很厉害，知道这个是苹果！");
 			}else{
-				error_answer(desA);
+				var dirA = "../media/guide/";
+				dirA = dirA + Answer + strB + "/1.mp3";
+				audio.src = dirB;
+				audio.play();
 			}
 		}
-		
+		var oImg2 = document.getElementById('img2');
 		oImg2.onclick = function(){
-			var checkB = (desB == Answer);
+			var strB = "{{ question.DesB }}";
+			var checkB = (strB == Answer);
 			if(checkB){
-				get_next();
+				alert("你很厉害，知道这个是桔子！");
 			}
 			else{
-				error_answer(desB);
+				var dirB = "../media/guide/";
+				dirB = dirB + Answer + strB + "/1.mp3";
+				audio.src = dirB;
+				audio.play();
 			}
 		}
-		
+		var oImg3 = document.getElementById('img3');
 		oImg3.onclick = function(){
-			var checkC = (desC == Answer);
+			var strC = "{{ question.DesC }}";
+			var checkC = (strC == Answer);
 			if(checkC){
-				get_next();
+				alert("你很厉害，知道这个是梨！");
 			}else{
-				error_answer(desC);
+				var dirC = "../media/guide/";
+				dirC = dirC + Answer + strC + "/1.mp3";
+				audio.src = dirC;
+				audio.play();
 			}
 		}
-		
+		var oImg4 = document.getElementById('img4');
 		oImg4.onclick = function(){
-			var checkD = (desD == Answer);
+			var strD = "{{ question.DesD }}";
+			var checkD = (strD == Answer);
 			if(checkD){
-				get_next();
+				alert("你很厉害，知道这个是菠萝！");
 			}else{
-				error_answer(desD);
+				var dirD = "../media/guide/";
+				dirD = dirD + Answer + strD + "/1.mp3";
+				audio.src = dirD;
+				audio.play();
 			}
 		}
 	</script>

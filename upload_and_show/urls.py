@@ -15,23 +15,19 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from makeSet import views as Set_views
+from django.views.generic import TemplateView, RedirectView
+
 from upload import views as upload_views
 from show import views as show_views
+from login import views as login_views
 from django.conf.urls.static import static
 from django.conf import settings
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.contrib import staticfiles 
-
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-	url(r'^index/',show_views.index),
 	url(r'show/',show_views.show),
 	url(r'^upload/',upload_views.upload),
 	url(r'^guide_upload/',upload_views.guide_upload),
-	url(r'^get_next/',show_views.get_next, name="get_next"),
-	url(r'^error_answer/',show_views.error_answer,name="error_answer"),
-	url(r'^makeSet/',Set_views.makeSet),
-] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+	url(r'^register/',login_views.nregister),
+	url(r'^index/', TemplateView.as_view(template_name='index.html'), name='index'),
 
-urlpatterns += staticfiles_urlpatterns()
+] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
