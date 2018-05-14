@@ -1,15 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-#from urllib import request 
-#from urllib import response
-import json
-import random
-from django.views.decorators.csrf import csrf_exempt
+
 from django.shortcuts import render
-from upload.models import Ques, guide
-from django.http import HttpResponse, JsonResponse
+from upload.models import Ques
 # Create your views here.
 
+<<<<<<< HEAD
 import datetime
 import time
 import os
@@ -22,9 +18,10 @@ questions = list(Ques.objects.all())
 length = len(questions)
 question = questions[number]
 
+'''
 def show(request):
 	return render(request,'show/showImg.html')
-
+'''
 
 def index(request):
 	return render(request,'show/index.html')
@@ -123,3 +120,8 @@ def get_feeling(request):
         print(tmp)
         return JsonResponse({"feeling": tmp})
 
+def show(request):
+	all_ques = Ques.objects.all()
+	questions = list(all_ques)
+	question = questions[0]
+	return render(request,'show/gallery.html',{"question":question})

@@ -58,7 +58,7 @@ def guide_upload(request):
 		new_guide = guide(
 			right_answer = right,
 			wrong_answer = wrong,
-			tips = "media/guide/" + guidance + ".mp3"			
+			tips = "media/voice/" + guidance + ".mp3"			
 		)
 		new_guide.save()
 
