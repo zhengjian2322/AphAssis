@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head> upload file </head>
+
+<body>
+<h1> 上传题目 </h1>
+<form action='/upload/' method='post' enctype='multipart/form-data'>
+	{% csrf_token %}
+	<p> ImageA<input type="file" name="imageA"> </p>
+	<p> Description A<input type="text" name="desA"></p>
+	<p> ImageB<input type="file" name="imageB"> </p>
+	<p> Description B<input type="text" name="desB"></p>
+	<p> ImageC<input type="file" name="imageC"> </p>
+	<p> Description C<input type="text" name="desC"></p>
+	<p> ImageD<input type="file" name="imageD"> </p>
+	<p> Description D<input type="text" name="desD"></p>
+	<p> Question <input type="text" name="question"> </p>
+	<p><input type="submit" value="submit"></p>
+</form>
+
+</body>
+</html>

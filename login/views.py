@@ -2,13 +2,14 @@ from django.contrib.auth import authenticate
 import json
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render, render_to_response, redirect
 from django.template.loader import get_template
 
 from login.models import register
-from django.views.decorators.csrf import csrf_exempt
-
-@csrf_exempt
+def index(req):
+    #username = req.COOKIES.get('username','')
+    print("sad")
+    return render_to_response('../static/index.html' )
 def nregister(request):
     if request.method == 'POST':
         type = request.POST.get('type', None)
@@ -38,9 +39,9 @@ def nregister(request):
             password = request.POST.get('password', None)
             m = register.objects.filter(res_username=username, res_password=password)
             if m:
-                resp = {'status':'failed' , 'reason': '登录成功'}
-                t = get_template('/AphAssis-master/templates/index.html')
-                return render('index.html')
+                resp = {'status':'success' , 'reason': '登录成功'}
+                return HttpResponse(json.dumps(resp), content_type="application/json")
+                return redirect("login/index/")
             else:
                 resp = {'status': 'failed', 'reason': '用户名或密码错误'}
                 return HttpResponse(json.dumps(resp), content_type="application/json")

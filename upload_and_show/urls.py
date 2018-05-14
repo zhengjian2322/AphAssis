@@ -15,20 +15,20 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from makeSet import views as Set_views
+from django.views.generic import TemplateView, RedirectView
+
 from upload import views as upload_views
 from show import views as show_views
 from login import views as login_views
+<<<<<<< HEAD
 from face_reg_test import views as face_reg_views
 
+=======
+>>>>>>> 26ff19d4fa041b972a9357100dde45525ec14ab3
 from django.conf.urls.static import static
 from django.conf import settings
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.contrib import staticfiles 
-
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-	url(r'^index/',show_views.index),
 	url(r'show/',show_views.show),
 	url(r'^upload/',upload_views.upload),
 	url(r'^guide_upload/',upload_views.guide_upload),
@@ -43,7 +43,6 @@ urlpatterns = [
 	url(r'^get_feeling_test/',face_reg_views.get_feeling,name="get_feeling_test"),
 	url(r'^upload_snap/',show_views.upload_snap,name="upload_snap"),
 	url(r'^get_feeling/',show_views.get_feeling,name="get_feeling"),
-	
-] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+	url(r'^index/', TemplateView.as_view(template_name='index.html'), name='index'),
 
-urlpatterns += staticfiles_urlpatterns()
+] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
