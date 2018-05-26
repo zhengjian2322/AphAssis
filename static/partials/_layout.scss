@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // breakpoints
    
 $S:     480px;   
@@ -18,3 +19,25 @@ $L:     1100px;
   }
 }
 
+=======
+// breakpoints
+   
+$S:     480px;   
+$M:     768px;     
+$L:     1100px;     
+
+// media queries
+
+@mixin MQ($canvas) {
+  @if $canvas == S {
+   @media only screen and (min-width: $S) { @content; } 
+  }
+  @else if $canvas == M {
+   @media only screen and (min-width: $M) { @content; } 
+  }
+  @else if $canvas == L {
+   @media only screen and (min-width: $L) { @content; } 
+  }
+}
+
+>>>>>>> 052bbd2d47a6129f6d2244bf84e501e8024ef430

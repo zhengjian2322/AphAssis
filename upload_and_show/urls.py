@@ -20,11 +20,9 @@ from django.views.generic import TemplateView, RedirectView
 from upload import views as upload_views
 from show import views as show_views
 from login import views as login_views
-<<<<<<< HEAD
+
 from face_reg_test import views as face_reg_views
 
-=======
->>>>>>> 26ff19d4fa041b972a9357100dde45525ec14ab3
 from django.conf.urls.static import static
 from django.conf import settings
 urlpatterns = [
@@ -33,10 +31,10 @@ urlpatterns = [
 	url(r'^upload/',upload_views.upload),
 	url(r'^guide_upload/',upload_views.guide_upload),
 	url(r'^get_next/',show_views.get_next, name="get_next"),
-    url(r'^get_all/',Set_views.get_all, name="get_all"),
-    url(r'^submit_set/',Set_views.submit_set, name="submit_set"),
+   # url(r'^get_all/',Set_views.get_all, name="get_all"),
+    #url(r'^submit_set/',Set_views.submit_set, name="submit_set"),
 	url(r'^error_answer/',show_views.error_answer,name="error_answer"),
-	url(r'^makeSet/',Set_views.makeSet),
+	#url(r'^makeSet/',Set_views.makeSet),
 	url(r'^register/',login_views.nregister),
 	url(r'^face_reg_test/',face_reg_views.index,name="face_reg_index"),
 	url(r'^upload_snap_test/',face_reg_views.upload_snap,name="upload_snap_test"),

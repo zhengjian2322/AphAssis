@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # AphAssis
 
 * **show** 目录下面包含题目显示界面和网站初始界面（登陆入口）
@@ -18,3 +19,8 @@
 
 * 需要的各种依赖包在 **package_list.txt** 文件中，感叹号标注的是比较重要的
 
+=======
+# Alpha
+First edition: create the prototype of the AI-aphasia assistant
+First edtion.
+>>>>>>> 052bbd2d47a6129f6d2244bf84e501e8024ef430
